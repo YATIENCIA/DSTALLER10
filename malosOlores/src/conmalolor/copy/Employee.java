@@ -11,13 +11,8 @@ import java.time.ZoneId;
 import java.util.Date;
 
 
-public class Employee
-{   
-
-    private String Nombre;
-    private String Apellido;
-    private String Cedula;
-    private Localizacion localizacion;
+public class Employee extends Persona
+{
     private final float rmu = (float) 386.0;
     //salario del employee
     private float salary;
@@ -74,50 +69,8 @@ public class Employee
         }
         return 0.0F;
     }
-        /**
-     * @return the Nombre
-     */
-    public String getNombre() {
-        return Nombre;
-    }
-
-    /**
-     * @param Nombre the Nombre to set
-     */
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    /**
-     * @return the Apellido
-     */
-    public String getApellido() {
-        return Apellido;
-    }
-
-    public Localizacion getLocalizacion() {
-        return localizacion;
-    }
-    /**
-     * @param Apellido the Apellido to set
-     */
-    public void setApellido(String Apellido) {
-        this.Apellido = Apellido;
-    }
-
-    /**
-     * @return the Cedula
-     */
-    public String getCedula() {
-        return Cedula;
-    }
-
-    /**
-     * @param Cedula the Cedula to set
-     */
-    public void setCedula(String Cedula) {
-        this.Cedula = Cedula;
-    }
+       
+    
     public void cambiarDireccion(String nuevoPais, String ciudadnueva, String provinciaNueva, String direccionNueva){
         localizacion = new Localizacion(direccionNueva,provinciaNueva,ciudadnueva,nuevoPais);
     }
