@@ -34,19 +34,24 @@ public class Empresa {
     }
     
     public void validarInformacion(String Nombre, String Apellido, String Cedula ){
-        if(Nombre.equals("") && Nombre.length()> 16){
+        final boolean nameGood= Nombre.equals("") && Nombre.length()> 16;
+        final boolean apellidoGood= Apellido.equals("") && Apellido.length()> 16;
+        final boolean cedulaGood = !Cedula.equals("") && Cedula.length()< 10;
+        
+        
+        if(nameGood){
             System.out.println("ingreso de nombre incorrecto");
         }else{
             System.out.println("ingreso de nombre correcto");
             
         }
-        if(Apellido.equals("") && Apellido.length()> 16){
+        if(apellidoGood){
             System.out.println("ingreso de apellido incorrecto");
         }else{
             System.out.println("ingreso de apellido correcto");
             
         }
-        if(!Cedula.equals("") && Cedula.length()< 10){
+        if(cedulaGood){
             System.out.println("ingreso de cedula incorrecto");
         }else{
             System.out.println("ingreso de cedula correcto");
