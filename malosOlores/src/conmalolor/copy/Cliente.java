@@ -28,5 +28,15 @@ public class Cliente extends Persona {
         this.telefono = telefono;
     }
 
+    @Override
+    public String toString() {
+        return "Cliente:\n"+
+                "Nombre: " + Nombre + 
+                ", Apellido: " + Apellido + 
+                ", con numero de cedula: " + Cedula+
+               "\nDireccion: " + getLocalizacion().mostrarLocation()+
+                "\n----------------------";
+    }
+
     
 }
