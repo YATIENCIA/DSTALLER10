@@ -15,12 +15,6 @@ public class Cliente extends Persona {
     public Cliente(String Nombre, String Apellido, String Cedula) {
         super(Nombre,Apellido,Cedula);
     }
-
-    
-
-    public Localizacion getLocalizacion() {
-        return localizacion;
-    }
     
     public void setLocation(String nuevoPais, String ciudadnueva, String provinciaNueva, String direccionNueva){
        localizacion = new Localizacion(direccionNueva,provinciaNueva,ciudadnueva,nuevoPais);
@@ -32,6 +26,16 @@ public class Cliente extends Persona {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente:\n"+
+                "Nombre: " + Nombre + 
+                ", Apellido: " + Apellido + 
+                ", con numero de cedula: " + Cedula+
+               "\nDireccion: " + getLocalizacion().mostrarLocation()+
+                "\n----------------------";
     }
 
     

@@ -5,120 +5,54 @@
  */
 package conmalolor.copy;
 
-import conmalolor.*;
-import java.time.LocalDate;
-import java.time.ZoneId;
-import java.util.Date;
-
-
-public class Employee
-{   
-
-    private String Nombre;
-    private String Apellido;
-    private String Cedula;
-    private Localizacion localizacion;
+public class Employee extends Persona implements BonusInterface
+{
     private final float rmu = (float) 386.0;
     //salario del employee
-    private float salary;
+    protected float salary;
     //porcentaje de bonus
-    private float bonusPercentage;    
-    //variable de tipo employeeType
-    private EmployeeType employeeType;    
+    protected float bonusPercentage;
 
-    public Employee(float salary, float bonusPercentage, EmployeeType employeeType)    
-    {        
+    //variable de tipo employeeType
+
+    public Employee(float salary, float bonusPercentage)    
+    {   
         this.salary = salary;        
         this.bonusPercentage = bonusPercentage;        
-        this.employeeType = employeeType;
         this.Nombre = "Descconocido";
         this.Apellido = "Descconocido";
         this.Cedula = "0000000000";
         this.cambiarDireccion("Ecuador", "Gye", "Guayas", "ESPOL Prosperina");
     }
-    //calcula el salario dependiendo del tipo de trabajador y entrega el décimo correspondiente cada 2 meses
-    public float cs()
+    
+    
+    public float calcularDecimo(float percent, int month)
     {
-        Date date = new Date();
-        //Obtiene la hora local
-        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        //Obtiene el mes en forma de entero
-        int month = localDate.getMonthValue();
-        switch (employeeType)         
-        {
-            case Worker:
-                //Si el mes es impar entonces le entrega el decimo junto con su salario
-                return month%2==0?salary:salary + rmu/12*2;
-            case Supervisor:
-                float valueS = salary + (bonusPercentage * 0.5F);
-                //Si el mes es impar entonces le entrega el decimo junto con su salario y un bono
-                return month%2==0?valueS:valueS + rmu/12*2;
-            case Manager:
-                float valueM = salary + (bonusPercentage * 0.7F);
-                //Si el mes es impar entonces le entrega el decimo junto con su salario y un bono
-                return month%2==0?valueM:valueM + rmu/12*2;
-        }
-        return 0.0F;
+        float value = salary + (bonusPercentage * percent);
+        return month%2==0?value:value + rmu/12*2;
     }
-    //calcula el bonus anual
-    public float CalculateYearBonus() 
-    {
-        switch (employeeType)
-        {
-            case Worker:
-                return 0;
-            case Supervisor:
-                return salary + salary * 0.7F;
-            case Manager:
-                return salary + salary * 1.0F;
-        }
-        return 0.0F;
-    }
-        /**
-     * @return the Nombre
-     */
-    public String getNombre() {
-        return Nombre;
-    }
-
-    /**
-     * @param Nombre the Nombre to set
-     */
-    public void setNombre(String Nombre) {
-        this.Nombre = Nombre;
-    }
-
-    /**
-     * @return the Apellido
-     */
-    public String getApellido() {
-        return Apellido;
-    }
-
-    public Localizacion getLocalizacion() {
-        return localizacion;
-    }
-    /**
-     * @param Apellido the Apellido to set
-     */
-    public void setApellido(String Apellido) {
-        this.Apellido = Apellido;
-    }
-
-    /**
-     * @return the Cedula
-     */
-    public String getCedula() {
-        return Cedula;
-    }
-
-    /**
-     * @param Cedula the Cedula to set
-     */
-    public void setCedula(String Cedula) {
-        this.Cedula = Cedula;
-    }
+   
+   
     public void cambiarDireccion(String nuevoPais, String ciudadnueva, String provinciaNueva, String direccionNueva){
         localizacion = new Localizacion(direccionNueva,provinciaNueva,ciudadnueva,nuevoPais);
+    }
+
+    @Override
+    public float cs() {
+       return this.cs();
+    }
+
+    @Override
+    public float CalculateYearBonus() {
+        return this.CalculateYearBonus();
+    }
+    @Override
+    public String toString() {
+        return "Empleado:"+
+                "\nNombre: " + Nombre + 
+                ", Apellido: " + Apellido + 
+                ", con numero de cedula: " + Cedula+
+               "\nDireccion: " + getLocalizacion().mostrarLocation()+
+                "\n----------------------";
     }
 }

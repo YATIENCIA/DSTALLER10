@@ -50,6 +50,12 @@ public class Persona {
         this.Cedula = Cedula;
     }
 
+    protected Localizacion getLocalizacion() {
+        return localizacion;
+    }
+
+
+    
 
     
 
